@@ -15,26 +15,55 @@ Twintafo is a **regulated-style synthetic clinical data generator scaffold** pro
 - **Privacy claims / non-claims**: [`docs/privacy/claims.md`](docs/privacy/claims.md)
 
 ## At a glance (pipeline)
-<details>
-<summary>Show diagram</summary>
-
 ```mermaid
-flowchart LR
-  A[YAML preset + seed] --> B[Simulate internal + external cohorts]
-  B --> C[Hard schema contract]
-  C --> D[Diagnostics: balance + overlap]
-  D --> E[Deterministic gating: pass-fail + reasons]
-  E --> F[Adjusted estimate: PROCOVA-style Cox PH]
-  F --> G{Borrowing enabled and gated in}
-  G -- yes --> H[Borrowing and ESS artifact]
-  G -- no --> I[Internal-only path]
-  H --> J[Final estimate payload]
-  I --> J
-  J --> K[HTML run report + JSON artifacts]
-  K --> L[Evidence pack optional]
-```
+%%{init: {"theme":"base","flowchart":{"nodeSpacing":55,"rankSpacing":70},"themeVariables":{
+  "fontSize":"16px",
+  "lineColor":"#94a3b8",
+  "textColor":"#0b1220",
+  "primaryColor":"#e2e8f0",
+  "primaryBorderColor":"#64748b"
+}}}%%
 
-</details>
+flowchart TB
+  A[YAML preset + seed]:::input
+
+  subgraph GEN[Simulation]
+    B[Simulate internal + external cohorts]:::gen
+    C[Hard schema contract]:::gen
+  end
+
+  subgraph DEC[Diagnostics + decisioning]
+    D[Diagnostics: balance + overlap]:::diag
+    E[Deterministic gating: pass-fail + reasons]:::gate
+  end
+
+  subgraph EST[Estimation]
+    F[Adjusted estimate: PROCOVA-style Cox PH]:::est
+    G{Borrowing enabled and gated in}:::decision
+    H[Borrowing and ESS artifact]:::borrow
+    I[Internal-only path]:::borrow
+    J[Final estimate payload]:::est
+  end
+
+  subgraph OUT[Artifacts + review bundle]
+    K[HTML run report + JSON artifacts]:::out
+    L[Evidence pack optional]:::out
+  end
+
+  A --> B --> C --> D --> E --> F --> G
+  G -- yes --> H --> J
+  G -- no --> I --> J
+  J --> K --> L
+
+  classDef input fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0b1220;
+  classDef gen fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#052e16;
+  classDef diag fill:#fef9c3,stroke:#ca8a04,stroke-width:2px,color:#422006;
+  classDef gate fill:#ffedd5,stroke:#f97316,stroke-width:2px,color:#431407;
+  classDef est fill:#e0e7ff,stroke:#4f46e5,stroke-width:2px,color:#1e1b4b;
+  classDef decision fill:#fae8ff,stroke:#a855f7,stroke-width:2px,color:#3b0764;
+  classDef borrow fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#500724;
+  classDef out fill:#f1f5f9,stroke:#334155,stroke-width:2px,color:#0f172a;
+```
 
 ## What you can evaluate from this repo
 - **Artifact contract**: what files exist, what they mean, how they fit together
