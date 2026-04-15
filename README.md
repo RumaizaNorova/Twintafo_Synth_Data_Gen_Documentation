@@ -2,7 +2,7 @@
   <img src="assets/Twintafo_AI_Logo_cropped%20%281%29%20copy.png" alt="Twintafo logo" width="160" />
 </p>
 
-# Twintafo Synthetic Data Generator — Public Documentation
+# Twintafo AI Synthetic Data Generator — Public Documentation
 
 Twintafo is a **regulated-style synthetic clinical data generator scaffold** producing **oncology-like cohorts** (baseline covariates, survival outcomes, longitudinal ctDNA) plus **review artifacts** (diagnostics, transportability gating, adjusted estimates, optional borrowing/ESS, and HTML reports).
 
@@ -37,22 +37,22 @@ flowchart TB
 
   subgraph LEFT[ ]
     direction TB
-    A[YAML preset + seed]:::input
-    B[Simulate internal + external cohorts]:::gen
-    C[Hard schema contract]:::gen
-    D[Diagnostics: balance + overlap]:::diag
+    A([YAML preset + seed]):::input
+    B([Simulate internal + external cohorts]):::gen
+    C([Hard schema contract]):::gen
+    D([Diagnostics: balance + overlap]):::diag
   end
 
   subgraph RIGHT[ ]
     direction TB
-    E[Deterministic gating: pass-fail + reasons]:::gate
-    F[Adjusted estimate: PROCOVA-style Cox PH]:::est
+    E([Deterministic gating: pass-fail + reasons]):::gate
+    F([Adjusted estimate: PROCOVA-style Cox PH]):::est
     G{Borrowing enabled and gated in}:::decision
-    H[Borrowing and ESS artifact]:::borrow
-    I[Internal-only path]:::borrow
-    J[Final estimate payload]:::est
-    K[HTML run report + JSON artifacts]:::out
-    L[Evidence pack optional]:::out
+    H([Borrowing and ESS artifact]):::borrow
+    I([Internal-only path]):::borrow
+    J([Final estimate payload]):::est
+    K([HTML run report + JSON artifacts]):::out
+    L([Evidence pack optional]):::out
   end
 
   A --> B --> C --> D
@@ -66,15 +66,15 @@ flowchart TB
   style LEFT fill:transparent,stroke:transparent
   style RIGHT fill:transparent,stroke:transparent
 
-  %% Neon-ish blocks on dark background
-  classDef input fill:#0b1020,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0;
-  classDef gen fill:#0b1020,stroke:#34d399,stroke-width:2px,color:#e2e8f0;
-  classDef diag fill:#0b1020,stroke:#facc15,stroke-width:2px,color:#e2e8f0;
-  classDef gate fill:#0b1020,stroke:#fb923c,stroke-width:2px,color:#e2e8f0;
-  classDef est fill:#0b1020,stroke:#818cf8,stroke-width:2px,color:#e2e8f0;
-  classDef decision fill:#0b1020,stroke:#c084fc,stroke-width:2px,color:#e2e8f0;
-  classDef borrow fill:#0b1020,stroke:#f472b6,stroke-width:2px,color:#e2e8f0;
-  classDef out fill:#0b1020,stroke:#94a3b8,stroke-width:2px,color:#e2e8f0;
+  %% Rich filled blocks (GitHub Mermaid does not support true linear gradients)
+  classDef input fill:#06263a,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0;
+  classDef gen fill:#052e1a,stroke:#34d399,stroke-width:2px,color:#e2e8f0;
+  classDef diag fill:#2a2306,stroke:#facc15,stroke-width:2px,color:#e2e8f0;
+  classDef gate fill:#2b1707,stroke:#fb923c,stroke-width:2px,color:#e2e8f0;
+  classDef est fill:#171a3a,stroke:#818cf8,stroke-width:2px,color:#e2e8f0;
+  classDef decision fill:#240f2e,stroke:#c084fc,stroke-width:2px,color:#e2e8f0;
+  classDef borrow fill:#2b0b1a,stroke:#f472b6,stroke-width:2px,color:#e2e8f0;
+  classDef out fill:#0f172a,stroke:#94a3b8,stroke-width:2px,color:#e2e8f0;
 ```
 
 ## What you can evaluate from this repo
