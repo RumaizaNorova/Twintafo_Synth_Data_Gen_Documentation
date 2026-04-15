@@ -16,7 +16,7 @@ Twintafo is a **regulated-style synthetic clinical data generator scaffold** pro
 
 ## At a glance (pipeline)
 ```mermaid
-%%{init: {"theme":"dark","flowchart":{"nodeSpacing":55,"rankSpacing":80},"themeVariables":{
+%%{init: {"theme":"dark","flowchart":{"nodeSpacing":40,"rankSpacing":65},"themeVariables":{
   "fontSize":"16px",
   "background":"#0b1020",
   "lineColor":"#334155",
@@ -27,33 +27,40 @@ Twintafo is a **regulated-style synthetic clinical data generator scaffold** pro
   "clusterBorder":"#1f2937"
 }}}%%
 
-flowchart LR
-  %% Two-row zigzag layout:
-  %% Top row goes left -> right, then we drop down and go right -> left.
+flowchart TB
+  %% Two-column snake layout:
+  %% Left column goes top -> down, then connects to top of right column.
 
-  subgraph TOP[ ]
-    direction LR
-    A[YAML preset + seed]:::input --> B[Simulate internal + external cohorts]:::gen --> C[Hard schema contract]:::gen --> D[Diagnostics: balance + overlap]:::diag --> E[Deterministic gating: pass-fail + reasons]:::gate
+  subgraph LEFT[ ]
+    direction TB
+    A[YAML preset + seed]:::input
+    B[Simulate internal + external cohorts]:::gen
+    C[Hard schema contract]:::gen
+    D[Diagnostics: balance + overlap]:::diag
   end
 
-  subgraph BOTTOM[ ]
-    direction RL
-    K[HTML run report + JSON artifacts]:::out --> L[Evidence pack optional]:::out
-    J[Final estimate payload]:::est --> K
-    H[Borrowing and ESS artifact]:::borrow --> J
-    I[Internal-only path]:::borrow --> J
-    G{Borrowing enabled and gated in}:::decision --> I
-    F[Adjusted estimate: PROCOVA-style Cox PH]:::est --> G
+  subgraph RIGHT[ ]
+    direction TB
+    E[Deterministic gating: pass-fail + reasons]:::gate
+    F[Adjusted estimate: PROCOVA-style Cox PH]:::est
+    G{Borrowing enabled and gated in}:::decision
+    H[Borrowing and ESS artifact]:::borrow
+    I[Internal-only path]:::borrow
+    J[Final estimate payload]:::est
+    K[HTML run report + JSON artifacts]:::out
+    L[Evidence pack optional]:::out
   end
 
-  %% Drop from end of top row into bottom row
-  E --> F
-  G -- yes --> H
-  G -- no --> I
+  A --> B --> C --> D
+  D --> E
+  E --> F --> G
+  G -- yes --> H --> J
+  G -- no --> I --> J
+  J --> K --> L
 
   %% Make section containers transparent (no white boxes)
-  style TOP fill:transparent,stroke:transparent
-  style BOTTOM fill:transparent,stroke:transparent
+  style LEFT fill:transparent,stroke:transparent
+  style RIGHT fill:transparent,stroke:transparent
 
   %% Neon-ish blocks on dark background
   classDef input fill:#0b1020,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0;
