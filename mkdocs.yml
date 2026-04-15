@@ -1,0 +1,47 @@
+site_name: Twintafo Synthetic Data Generator — Documentation
+site_description: Public documentation for Twintafo's regulated-style synthetic clinical data generator scaffold.
+repo_url: https://github.com/RumaizaNorova/Twintafo_Synth_Data_Gen_Documentation
+repo_name: Twintafo_Synth_Data_Gen_Documentation
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - footnotes
+  - tables
+
+nav:
+  - Home: index.md
+  - Executive summary: executive-summary.md
+  - How to run: how-to-run.md
+  - What it produces:
+      - Outputs & artifacts contract: outputs/artifacts.md
+      - Synthetic cohort schema (public): outputs/schema.md
+  - How it works (public view):
+      - Pipeline & decision flow: how-it-works/pipeline.md
+      - Transportability diagnostics & gating: how-it-works/gating.md
+      - Estimands & analyses: how-it-works/estimands.md
+      - Modeling overview (non-reproducible): how-it-works/modeling.md
+      - Longitudinal ctDNA (public view): how-it-works/time-series.md
+  - Validation (why it’s valid):
+      - Overview: validity/overview.md
+      - Operating characteristics (OC): validity/oc.md
+      - Sensitivity analyses: validity/sensitivity.md
+      - Robustness tests: validity/robustness.md
+  - Privacy & safety:
+      - Claims, boundaries, and what we do NOT claim: privacy/claims.md
+      - De-identification stance: privacy/deid.md
+      - Disclosure risk (planned): privacy/risk.md
+  - Web app & evidence pack: webapp.md
+  - Limitations: limitations.md
+  - Use cases: use-cases.md
+  - FAQ: faq.md
+  - Glossary: glossary.md
