@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/Twintafo_AI_Logo_cropped%20%281%29%20copy.png" alt="Twintafo logo" width="160" />
+</p>
+
 # Twintafo Synthetic Data Generator — Public Documentation
 
 Twintafo is a **regulated-style synthetic clinical data generator scaffold** producing **oncology-like cohorts** (baseline covariates, survival outcomes, longitudinal ctDNA) plus **review artifacts** (diagnostics, transportability gating, adjusted estimates, optional borrowing/ESS, and HTML reports).
