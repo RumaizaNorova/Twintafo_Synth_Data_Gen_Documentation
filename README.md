@@ -12,15 +12,15 @@ flowchart LR
   A[YAML preset + seed] --> B[Simulate internal + external cohorts]
   B --> C[Hard schema contract]
   C --> D[Diagnostics: balance + overlap]
-  D --> E[Deterministic gating (pass/fail + reasons)]
-  E --> F[Adjusted estimate (PROCOVA-style Cox PH)]
-  F --> G{Borrowing enabled and gated in?}
-  G -- yes --> H[Borrowing / ESS artifact]
+  D --> E[Deterministic gating: pass-fail + reasons]
+  E --> F[Adjusted estimate: PROCOVA-style Cox PH]
+  F --> G{Borrowing enabled and gated in}
+  G -- yes --> H[Borrowing and ESS artifact]
   G -- no --> I[Internal-only path]
   H --> J[Final estimate payload]
   I --> J
   J --> K[HTML run report + JSON artifacts]
-  K --> L[(Evidence pack optional)]
+  K --> L[Evidence pack optional]
 ```
 
 ## What you’ll find here
