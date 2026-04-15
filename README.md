@@ -18,8 +18,11 @@ Twintafo is a **regulated-style synthetic clinical data generator scaffold** pro
 - **Validation (OC + sensitivity)**: [`docs/validity/overview.md`](docs/validity/overview.md)
 - **Privacy claims / non-claims**: [`docs/privacy/claims.md`](docs/privacy/claims.md)
 
-## At a glance (pipeline)
-```mermaid
+## At a glance
+
+| What you’re looking at | Pipeline |
+| --- | --- |
+| **This project is decision-centric.**<br><br>**Run outputs (public contract):**<br>- Diagnostics (balance + overlap)<br>- Gating decision (pass/fail + reasons)<br>- Adjusted estimate (Cox PH)<br>- Optional borrowing/ESS<br>- Final estimate payload<br>- HTML report + JSON artifacts<br><br>**How to evaluate:**<br>- Read the artifacts contract<br>- Inspect gating rationale<br>- Review OC + sensitivity summaries | ```mermaid
 %%{init: {"theme":"dark","flowchart":{"nodeSpacing":40,"rankSpacing":65},"themeVariables":{
   "fontSize":"16px",
   "background":"#0b1020",
@@ -75,7 +78,7 @@ flowchart TB
   classDef decision fill:#240f2e,stroke:#c084fc,stroke-width:2px,color:#e2e8f0;
   classDef borrow fill:#2b0b1a,stroke:#f472b6,stroke-width:2px,color:#e2e8f0;
   classDef out fill:#0f172a,stroke:#94a3b8,stroke-width:2px,color:#e2e8f0;
-```
+``` |
 
 ## What you can evaluate from this repo
 - **Artifact contract**: what files exist, what they mean, how they fit together
