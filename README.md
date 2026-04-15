@@ -27,42 +27,33 @@ Twintafo is a **regulated-style synthetic clinical data generator scaffold** pro
   "clusterBorder":"#1f2937"
 }}}%%
 
-flowchart TB
-  A[YAML preset + seed]:::input
+flowchart LR
+  %% Two-row zigzag layout:
+  %% Top row goes left -> right, then we drop down and go right -> left.
 
-  subgraph GEN[Simulation]
-    B[Simulate internal + external cohorts]:::gen
-    C[Hard schema contract]:::gen
+  subgraph TOP[ ]
+    direction LR
+    A[YAML preset + seed]:::input --> B[Simulate internal + external cohorts]:::gen --> C[Hard schema contract]:::gen --> D[Diagnostics: balance + overlap]:::diag --> E[Deterministic gating: pass-fail + reasons]:::gate
   end
 
-  subgraph DEC[Diagnostics + decisioning]
-    D[Diagnostics: balance + overlap]:::diag
-    E[Deterministic gating: pass-fail + reasons]:::gate
+  subgraph BOTTOM[ ]
+    direction RL
+    K[HTML run report + JSON artifacts]:::out --> L[Evidence pack optional]:::out
+    J[Final estimate payload]:::est --> K
+    H[Borrowing and ESS artifact]:::borrow --> J
+    I[Internal-only path]:::borrow --> J
+    G{Borrowing enabled and gated in}:::decision --> I
+    F[Adjusted estimate: PROCOVA-style Cox PH]:::est --> G
   end
 
-  subgraph EST[Estimation]
-    F[Adjusted estimate: PROCOVA-style Cox PH]:::est
-    G{Borrowing enabled and gated in}:::decision
-    H[Borrowing and ESS artifact]:::borrow
-    I[Internal-only path]:::borrow
-    J[Final estimate payload]:::est
-  end
-
-  subgraph OUT[Artifacts + review bundle]
-    K[HTML run report + JSON artifacts]:::out
-    L[Evidence pack optional]:::out
-  end
-
-  A --> B --> C --> D --> E --> F --> G
-  G -- yes --> H --> J
-  G -- no --> I --> J
-  J --> K --> L
+  %% Drop from end of top row into bottom row
+  E --> F
+  G -- yes --> H
+  G -- no --> I
 
   %% Make section containers transparent (no white boxes)
-  style GEN fill:transparent,stroke:transparent
-  style DEC fill:transparent,stroke:transparent
-  style EST fill:transparent,stroke:transparent
-  style OUT fill:transparent,stroke:transparent
+  style TOP fill:transparent,stroke:transparent
+  style BOTTOM fill:transparent,stroke:transparent
 
   %% Neon-ish blocks on dark background
   classDef input fill:#0b1020,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0;
