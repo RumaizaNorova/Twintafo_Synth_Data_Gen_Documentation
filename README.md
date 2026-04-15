@@ -16,12 +16,15 @@ Twintafo is a **regulated-style synthetic clinical data generator scaffold** pro
 
 ## At a glance (pipeline)
 ```mermaid
-%%{init: {"theme":"base","flowchart":{"nodeSpacing":55,"rankSpacing":70},"themeVariables":{
+%%{init: {"theme":"dark","flowchart":{"nodeSpacing":55,"rankSpacing":80},"themeVariables":{
   "fontSize":"16px",
-  "lineColor":"#94a3b8",
-  "textColor":"#0b1220",
-  "primaryColor":"#e2e8f0",
-  "primaryBorderColor":"#64748b"
+  "background":"#0b1020",
+  "lineColor":"#334155",
+  "textColor":"#e2e8f0",
+  "primaryColor":"#0b1020",
+  "primaryBorderColor":"#334155",
+  "clusterBkg":"transparent",
+  "clusterBorder":"#1f2937"
 }}}%%
 
 flowchart TB
@@ -55,14 +58,21 @@ flowchart TB
   G -- no --> I --> J
   J --> K --> L
 
-  classDef input fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0b1220;
-  classDef gen fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#052e16;
-  classDef diag fill:#fef9c3,stroke:#ca8a04,stroke-width:2px,color:#422006;
-  classDef gate fill:#ffedd5,stroke:#f97316,stroke-width:2px,color:#431407;
-  classDef est fill:#e0e7ff,stroke:#4f46e5,stroke-width:2px,color:#1e1b4b;
-  classDef decision fill:#fae8ff,stroke:#a855f7,stroke-width:2px,color:#3b0764;
-  classDef borrow fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#500724;
-  classDef out fill:#f1f5f9,stroke:#334155,stroke-width:2px,color:#0f172a;
+  %% Make section containers transparent (no white boxes)
+  style GEN fill:transparent,stroke:transparent
+  style DEC fill:transparent,stroke:transparent
+  style EST fill:transparent,stroke:transparent
+  style OUT fill:transparent,stroke:transparent
+
+  %% Neon-ish blocks on dark background
+  classDef input fill:#0b1020,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0;
+  classDef gen fill:#0b1020,stroke:#34d399,stroke-width:2px,color:#e2e8f0;
+  classDef diag fill:#0b1020,stroke:#facc15,stroke-width:2px,color:#e2e8f0;
+  classDef gate fill:#0b1020,stroke:#fb923c,stroke-width:2px,color:#e2e8f0;
+  classDef est fill:#0b1020,stroke:#818cf8,stroke-width:2px,color:#e2e8f0;
+  classDef decision fill:#0b1020,stroke:#c084fc,stroke-width:2px,color:#e2e8f0;
+  classDef borrow fill:#0b1020,stroke:#f472b6,stroke-width:2px,color:#e2e8f0;
+  classDef out fill:#0b1020,stroke:#94a3b8,stroke-width:2px,color:#e2e8f0;
 ```
 
 ## What you can evaluate from this repo
