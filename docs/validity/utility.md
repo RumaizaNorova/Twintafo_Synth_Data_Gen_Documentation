@@ -1,28 +1,17 @@
-# Utility tests
+# Utility (in this scaffold)
 
-Utility answers: **can the synthetic data support the analyses we care about?**
+In this project, “utility” is primarily about whether the generated cohorts support the **intended review workflow** and produce credible **artifact bundles**.
 
-## Statistical similarity (examples)
-- **Univariate**: distribution distance per feature (continuous + categorical)
-- **Bivariate**: association preservation (correlations, contingency structure)
-- **Stratified**: repeat metrics within cohorts (age bands, diagnosis groups, etc.)
+## What we check (public examples)
+- **Artifact completeness**: required tables and JSON artifacts are produced under the schema contract.
+- **Diagnostic sensibility**: balance/overlap summaries behave predictably when scenario shifts are introduced.
+- **Decision behavior**: gating outcomes align with diagnostic summaries (pass/fail with coherent reason strings).
+- **Analysis viability**: adjusted estimation produces interpretable outputs when scenario conditions support it.
 
-## Downstream task utility (examples)
-We compare models trained/evaluated on real vs synthetic data for tasks like:
-- risk prediction / classification
-- regression tasks (length of stay proxies, costs)
-- time-to-event or sequence forecasting (when applicable)
+## How it’s reported
+- run report summaries (HTML)
+- machine-readable artifacts for audit and downstream UI/API use
+- aggregate OC and sensitivity summaries (see those sections)
 
-We report:
-- performance deltas (aggregate)
-- calibration changes (aggregate)
-- cohort stability (slice-wise)
-
-## Acceptance criteria
-Utility is application-specific; we document:
-- target thresholds
-- known caveats (where synthesis is weaker)
-- intended safe uses vs non-recommended uses
-
-!!! tip "Public-safe artifacts"
-    Utility can often be shown without leaking sensitive data by sharing **aggregate distances**, **task-level metrics**, and **plots without raw points**.
+!!! note
+    This repository does not document “train ML models on synthetic vs real” benchmarking because the scaffold does not ingest real partner datasets by default and the focus is decision-pipeline validation.

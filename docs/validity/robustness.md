@@ -3,11 +3,11 @@
 Robustness answers: **does the generator keep working when conditions change?**
 
 ## Stressors we test (examples)
-- **Cohort shift**: generate for different subpopulations and compare quality slice-wise
-- **Rare event emphasis**: focus evaluation on low-prevalence outcomes/variables
-- **Missingness stress**: increase/decrease missingness and validate stability
-- **Schema variation**: add/remove columns, change categorical cardinalities
-- **Temporal stress**: varying window lengths and sampling frequency
+- **External shift scenarios**: vary external cohort shifts and observe diagnostic + gating behavior
+- **Rare events / low-event regimes**: observe stability of estimation artifacts and decision outcomes
+- **Missingness + dropout stress**: alter longitudinal missingness/dropout and observe downstream stability
+- **Multi-external settings**: pairwise gating behavior when multiple external cohorts exist
+- **Temporal/visit schedule stress**: vary ctDNA schedules and irregularity patterns (public-safe)
 
 ## What we report
 - which stressors were applied

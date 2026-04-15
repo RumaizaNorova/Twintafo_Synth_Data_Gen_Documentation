@@ -1,28 +1,21 @@
-# Modeling approach (statistical)
+# Modeling approach (public view)
 
-Our current public description emphasizes a **statistical (non-deep-learning) approach** suitable for constrained health data, where:
-- schemas can be complex,
-- missingness is informative,
-- rare events matter,
-- and interpretability/debuggability is useful.
+This project is a **simulation-based clinical generator scaffold**. It is designed to produce **oncology-like cohorts** with:
+- baseline covariates,
+- time-to-event outcomes (with censoring/dropout),
+- longitudinal ctDNA measurements,
+and to emit **decision pipeline artifacts** (diagnostics → gating → estimation → optional borrowing).
 
-## High-level idea
-We aim to model:
-- **marginals** (per-feature distributions),
-- **dependencies** (associations between features),
-- **constraints** (valid ranges, category sets, structural rules),
-then sample from the learned representation and **repair** invalid outputs.
+## High-level ingredients
+- **Baseline covariates**: generated from field-specific distributions and simple relationships (public-safe description).
+- **Outcome process**: time-to-event simulation from parametric families with configurable censoring/dropout; optional competing risks representations in some scenarios.
+- **Longitudinal ctDNA**: simulated measurement schedule + values with missingness/dropout patterns; may be coupled to outcome-related latent structure at a high level.
+- **Adjusted estimation**: PROCOVA-style Cox PH to produce an adjusted estimate artifact for review workflows.
 
-## Why statistical methods here
-- **Constraint friendliness**: easier to incorporate hard rules and plausibility checks.
-- **Data efficiency**: can behave well when data is limited or heavily sparse.
-- **Auditability**: easier to explain failures and iterate with domain experts.
-
-## What to look for in results
-Good synthesis should preserve:
-- stratified distributions (across cohorts),
-- clinically meaningful associations (not just global correlations),
-- tail behavior for rare but important variables.
+## Why this approach
+- **Auditability**: the system is meant to generate traceable artifacts and reviewer-oriented summaries, not just “realistic rows”.
+- **Decision validation**: the goal is to validate how diagnostics, gating, and borrowing behave under known scenarios.
+- **Schema contract**: outputs are constrained to a strict artifact contract so downstream review bundles and tooling remain stable.
 
 !!! note "Boundaries"
-    This page intentionally avoids implementation-grade detail (exact model families per column, conditioning structure, and tuning strategy).
+    This page intentionally avoids reproduction-grade details (exact simulation dynamics, constants, tuning defaults, and fallback heuristics).

@@ -1,15 +1,14 @@
-# De-identification stance
+# Privacy stance (public)
 
-We approach synthetic generation with a **de-identification mindset**:
-- avoid direct identifiers in outputs,
-- reduce the chance of producing rows that are too close to any single real individual,
-- prefer reporting and sharing that does not expose raw sensitive values.
+This project is a **simulation-based generator scaffold** intended to produce synthetic cohorts and review artifacts **without ingesting real patient identifiers to run**.
 
-## Practical safeguards (public description)
-- **Schema-level exclusion**: do not model or emit direct identifiers.
-- **Constraint enforcement**: disallow out-of-domain values and suspicious combinations.
-- **Aggregate-first reporting**: share evaluation outputs as aggregate summaries.
+## What we can say publicly
+- Runs can be executed using only a **config/preset + seed**, producing synthetic cohorts and reviewer artifacts.
+- This documentation focuses on **traceability** (metadata, manifests/hashes where enabled) and **decision validation** (OC + sensitivity), not privacy proofs.
 
-!!! warning "Not a formal privacy guarantee"
-    De-identification is not the same as a formal privacy guarantee.  
-    Where needed, we plan to expand disclosure risk evaluation (see next page).
+## What we do NOT claim
+- This documentation does not claim differential privacy (DP).
+- This documentation does not claim membership inference, linkage resistance, or formal disclosure-risk guarantees.
+
+!!! note
+    A more complete disclosure-risk framework may be documented in the future where it is compatible with partner constraints and does not enable reverse engineering.
